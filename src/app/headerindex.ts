@@ -5,6 +5,11 @@ export interface Headerindex {
   baseName: number;
 }
 
+export interface RowData{
+  contents: string[];
+}
+
+
 export interface ViewData {
   phone: string;
   inDateTime: string;

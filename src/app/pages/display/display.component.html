@@ -1,8 +1,14 @@
-<button nz-button nzType="primary"
+<!--<button nz-button nzType="primary"
         (click)="exportData()"
         [nzLoading]="isExporting"
 >
   {{ isExporting ? '导出中' : '导出' }}
+</button>
+-->
+
+<button nz-button nzType="primary"
+(click)="goMatch()">
+比对
 </button>
 
 <nz-table nzTemplateMode>

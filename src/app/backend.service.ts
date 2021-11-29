@@ -40,5 +40,9 @@ export class BackendService {
     return of(this.tripPhoneGeoHashDataTime)
   }
 
+  getMatchResult():Observable<string> {
+    return of(this.tableData);
+  }
+
 
 }

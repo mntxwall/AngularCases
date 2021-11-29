@@ -280,12 +280,8 @@ export class ShowComponent implements OnInit {
       baseName: baseName,
       baseNameCount: 0
     };
-
     this.resultPhoneGeoHashNameCount.push(currentPhoneGeoHashNameCount);
-
-
   }
-
   getTripGeohashDataTime(tripGeoHash: PhoneGeoHashDateTimeCounts, tripGeoHashBaseName: PhoneGeoHashNameCount[]) {
 
     //console.log(tripGeoHashBaseName);
@@ -369,28 +365,6 @@ export class ShowComponent implements OnInit {
           e.geoHashName = tmp[0].baseName;
           e.geoHashNameCount = tmp[0].baseNameCount;
         }
-
-
-
-
-        let tmpTripBaseName = tmp.filter(f => {
-
-          //console.log(f.baseName.indexOf("机场"))
-          return f.baseName.indexOf("机场")? 0: 1
-        });
-
-        console.log("This is airport")
-        console.log(tmpTripBaseName);
-
-        this.getTripGeohashDataTime(e, tmpTripBaseName)
-
-
-        //找出最大基站名称计数的基站
-        tmp.sort((g1, g2) =>{
-          return g1.baseNameCount < g2.baseNameCount ? 1: -1
-        });
-        e.geoHashName = tmp[0].baseName;
-        e.geoHashNameCount = tmp[0].baseNameCount;
         //console.log(tmp[0])
 
       });

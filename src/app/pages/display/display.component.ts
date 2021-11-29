@@ -57,7 +57,6 @@ export class DisplayComponent implements OnInit {
      // @ts-ignore
      this.router.navigateByUrl("/");
    }
-
     //console.log(this.service.getResultPhoneGeoHashDataTime())
   }
 
@@ -81,15 +80,16 @@ export class DisplayComponent implements OnInit {
 
     //this.exportCsvString = "号码,GEOHASH,停留总时长,进入时间,离开时间,停留区间时长,GEOHASH中最多次数基站名\r\n";
 
-    this.exportCsvString = "类型,号码,进入时间,离开时间,停留区间时长,GEOHASH中最多次数基站名\r\n";
 
-    this.tripGeoHashDataTime.forEach(row => {
+    this.exportCsvString = "类型,号码,进入时间,离开时间,停留区间时长,GEOHASH,GEOHASH中最多次数基站名\r\n";
+    /*
+       this.tripGeoHashDataTime.forEach(row => {
 
-      row.dateTimes.forEach(dates =>{
-        this.exportCsvString += "出行"+ "," + row.phone + "," +
-          dates.end.toString() + "," + dates.start + "," + dates.interval + "," + row.geoHashName +"\r\n";
-      });
-    });
+         row.dateTimes.forEach(dates =>{
+           this.exportCsvString += "出行"+ "," + row.phone + "," +
+             dates.end.toString() + "," + dates.start + "," + dates.interval + "," + row.geoHashName +"\r\n";
+         });
+       });*/
 
     this.displayPhonesGeoHashDataTime.forEach(row => {
 
@@ -101,7 +101,7 @@ export class DisplayComponent implements OnInit {
 
       row.dateTimes.forEach(dates =>{
         this.exportCsvString += "普通"+ "," + row.phone + "," +
-          dates.end.toString() + "," + dates.start + "," + dates.interval + "," + row.geoHashName +"\r\n";
+          dates.end.toString() + "," + dates.start + "," + dates.interval + "," + row.geohash + "," + row.geoHashName +"\r\n";
       });
 
     });
@@ -142,32 +142,14 @@ export class DisplayComponent implements OnInit {
 
     });
 
+  }
 
-    /*
-    console.log(this.displayPhonesGeoHashDataTime);
+  goMatch(): void {
+    console.log("goMathing");
 
-    let str="你,我,他\r\nD,E,F";
-    let exportCsvString = "号码,GEOHASH,停留总时长,开始时间,结束时间,停留区间时长\r\n";
-
-    this.displayPhonesGeoHashDataTime.forEach(row => {
-      row.dateTimes.forEach(dates =>{
-        exportCsvString += row.phone + "," + row.geohash + "," + row.sumDateTimes + "," +
-          dates.end.toString() + "," + dates.start + "," + dates.interval + "\r\n";
-      });
-    });
-
-    const blob = new Blob([ "\uFEFF" + exportCsvString], { type: 'text/csv;charset=GBK;' });
-
-    const a = document.createElement('a');
-
-    const url = window.URL.createObjectURL(blob);
-
-    a.href = url;
-    a.download = Date.now().toString() + '.csv';
-    a.click();
-    window.URL.revokeObjectURL(url);
-    a.remove();*/
-
+    this.service.getMatchResult().subscribe(data => {
+      console.log(data);
+    })
   }
 
 }
